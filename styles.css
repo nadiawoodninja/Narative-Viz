@@ -1,5 +1,5 @@
 body {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: "Quicksand", Helvetica, Arial, sans-serif;
 	margin: auto;
 	position: relative;
 	/*width: 1800px;*/
@@ -22,7 +22,7 @@ body {
 	box-shadow: 0 8px 16px 0 #9c9c9c;
 }
 
-.decadeButton {
+.categoryButton {
 	border-radius: 4px;
 	flex-grow: 1;
 	padding: 10px 5px 10px 5px;
@@ -30,11 +30,11 @@ body {
 	border: 1px solid #99a4b3;
 }
 
-.decadeButton:hover {
+.categoryButton:hover {
 	cursor: pointer;
 }
 
-.selectedDecade {
+.selectedCategory {
 	background-color: #a4edf8;
 }
 

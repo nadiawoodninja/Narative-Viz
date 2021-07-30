@@ -14,8 +14,8 @@ async function fetchDataFromWeb() {
 // Category
 //PC Mag Ratings
 function transformData(entry) {
-	const processedCategory = processedCategory(entry["Category"]);
-	if (!processedCategory) {
+	const processCategory = processedCategory(entry["Category"]);
+	if (!processCategory) {
 		console.warn("Invalid entry:" + entry["Category"]);
 		return null;
 	} else {
@@ -24,7 +24,7 @@ function transformData(entry) {
 			year: Number(entry["Best Device for Year"]),
 			release: Number(entry["Release"]),
 			cost: Number(entry["Cost"].replace(/,/g, "")) / 1000000,
-			category: processedCategory,
+			category: processCategory,
 		};
 	}
 }

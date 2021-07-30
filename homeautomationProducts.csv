@@ -1,31 +1,31 @@
 Best Device for Year,Release,Title,Category,Cost
-2021,2021,Amazon Echo 4th Gen,"[{'id': 1, 'name': 'Smart Displays'}]",99.99
-2021,2021,Amazon Echo Dot with Clock (4th Gen),"[{'id': 1, 'name': 'Smart Displays'}]",59.99
-2021,2021,Amazon Echo Show 10 (3rd) Gen),"[{'id': 1, 'name': 'Smart Displays'}]",249.99
-2021,2019,Amazon Echo Show 8,"[{'id': 1, 'name': 'Smart Displays'}]",109.99
-2021,2019,Amazon Echo Show 5,"[{'id': 1, 'name': 'Smart Displays'}]",44.99
-2021,2017,Google Home Max,"[{'id': 1, 'name': 'Smart Displays'}]",299
-2021,2019,Google Nest Hub Max,"[{'id': 1, 'name': 'Smart Displays'}]",229
-2021,2020,Google Nest Audio,"[{'id': 1, 'name': 'Smart Displays'}]",99.99
-2021,2019,Google Nest Mini,"[{'id': 1, 'name': 'Smart Displays'}]",269.99
-2021,2021,Google Nest Hub (2nd Gen),"[{'id': 1, 'name': 'Smart Displays'}]",799
-2021,2019,Sonos One (Gen 2),"[{'id': 2, 'name': 'Smart Speakers'}]",399
-2021,2020,Sonos Arc,"[{'id': 2, 'name': 'Smart Speakers'}]",414.95
-2021,2018,Sonos Beam,"[{'id': 2, 'name': 'Smart Speakers'}]",169.99
-2021,2020,Sonos Move,"[{'id': 2, 'name': 'Smart Speakers'}]",59.95
-2021,2021,Sonos Roam,"[{'id': 2, 'name': 'Smart Speakers'}]",18.99
-2021,2019,ConnectSense Smart Outlet 2,"[{'id':3, 'name': 'Smart Plugs'}]",178.99
-2021,2020,Kasa Smart Wi-Fi Outdoor Plug,"[{'id':3, 'name': 'Smart Plugs'}]",32.98
-2021,2021,Arlo Pro 4,"[{'id':4, 'name': 'Home Security Cameras'}]",98
-2021,2021,Wyze Cam V3,"[{'id':4, 'name': 'Home Security Cameras'}]",32.98
-2021,2021,Ezviz DB1C Wi-Fi Video Doorbell,"[{'id':4, 'name': 'Home Security Cameras'}]",98
-2021,2021,Nanit Pro,"[{'id':4, 'name': 'Home Security Cameras'}]",374.86
-2021,2020,Furbo Dog Camera,"[{'id':4, 'name': 'Home Security Cameras'}]",162.9
-2021,2020,August Wi-Fi Smart Lock,"[{'id':5, 'name': 'Smart Locks and Home Security Systems'}]",230
-2021,2021,Vivint Smart Home,"[{'id':5, 'name': 'Smart Locks and Home Security Systems'}]",39.99
-2021,2021,SimpliSafe Home Security System,"[{'id':5, 'name': 'Smart Locks and Home Security Systems'}]",229
-2021,2019,Ecobee Smart Thermostat With Voice Control,"[{'id':6, 'name': 'Smart Heating and Cooling'}]",249
-2021,2020,Nest Thermostat,"[{'id':6, 'name': 'Smart Heating and Cooling'}]",113
-2021,2016,Nest Learning Thermostat (3rd Generation),"[{'id':6, 'name': 'Smart Heating and Cooling'}]",249.99
-2021,2020,"Midea 8,000BTU U-shaped Air Conditioner","[{'id':6, 'name': 'Smart Heating and Cooling'}]",359
-2021,2021,Wyze Bulb Color,"[{'id':7, 'name': 'Smart Lighting'}]",26.98
+2021,2021,Amazon Echo 4th Gen,"[{'id': 1, 'name': 'SmartDisplays'}]",99.99
+2021,2021,Amazon Echo Dot with Clock (4th Gen),"[{'id': 1, 'name': 'SmartDisplays'}]",59.99
+2021,2021,Amazon Echo Show 10 (3rd) Gen),"[{'id': 1, 'name': 'SmartDisplays'}]",249.99
+2021,2019,Amazon Echo Show 8,"[{'id': 1, 'name': 'SmartDisplays'}]",109.99
+2021,2019,Amazon Echo Show 5,"[{'id': 1, 'name': 'SmartDisplays'}]",44.99
+2021,2017,Google Home Max,"[{'id': 1, 'name': 'SmartDisplays'}]",299
+2021,2019,Google Nest Hub Max,"[{'id': 1, 'name': 'SmartDisplays'}]",229
+2021,2020,Google Nest Audio,"[{'id': 1, 'name': 'SmartDisplays'}]",99.99
+2021,2019,Google Nest Mini,"[{'id': 1, 'name': 'SmartDisplays'}]",269.99
+2021,2021,Google Nest Hub (2nd Gen),"[{'id': 1, 'name': 'SmartDisplays'}]",799
+2021,2019,Sonos One (Gen 2),"[{'id': 2, 'name': 'SmartSpeakers'}]",399
+2021,2020,Sonos Arc,"[{'id': 2, 'name': 'SmartSpeakers'}]",414.95
+2021,2018,Sonos Beam,"[{'id': 2, 'name': 'SmartSpeakers'}]",169.99
+2021,2020,Sonos Move,"[{'id': 2, 'name': 'SmartSpeakers'}]",59.95
+2021,2021,Sonos Roam,"[{'id': 2, 'name': 'SmartSpeakers'}]",18.99
+2021,2019,ConnectSense Smart Outlet 2,"[{'id':3, 'name': 'SmartPlugs'}]",178.99
+2021,2020,Kasa Smart Wi-Fi Outdoor Plug,"[{'id':3, 'name': 'SmartPlugs'}]",32.98
+2021,2021,Arlo Pro 4,"[{'id':4, 'name': 'HomeSecurityCameras'}]",98
+2021,2021,Wyze Cam V3,"[{'id':4, 'name': 'HomeSecurityCameras'}]",32.98
+2021,2021,Ezviz DB1C Wi-Fi Video Doorbell,"[{'id':4, 'name': 'HomeSecurityCameras'}]",98
+2021,2021,Nanit Pro,"[{'id':4, 'name': 'HomeSecurityCameras'}]",374.86
+2021,2020,Furbo Dog Camera,"[{'id':4, 'name': 'HomeSecurityCameras'}]",162.9
+2021,2020,August Wi-Fi Smart Lock,"[{'id':5, 'name': 'SmartLocksandHomeSecuritySystems'}]",230
+2021,2021,Vivint Smart Home,"[{'id':5, 'name': 'SmartLocksandHomeSecuritySystems'}]",39.99
+2021,2021,SimpliSafe Home Security System,"[{'id':5, 'name': 'SmartLocksandHomeSecuritySystems'}]",229
+2021,2019,Ecobee Smart Thermostat With Voice Control,"[{'id':6, 'name': 'SmartHeatingandCooling'}]",249
+2021,2020,Nest Thermostat,"[{'id':6, 'name': 'SmartHeatingandCooling'}]",113
+2021,2016,Nest Learning Thermostat (3rd Generation),"[{'id':6, 'name': 'SmartHeatingandCooling'}]",249.99
+2021,2020,"Midea 8,000BTU U-shaped Air Conditioner","[{'id':6, 'name': 'SmartHeatingandCooling'}]",359
+2021,2021,Wyze Bulb Color,"[{'id':7, 'name': 'SmartLighting'}]",26.98

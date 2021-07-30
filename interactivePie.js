@@ -1,4 +1,4 @@
-let gCurrentCategory = 'Smart Displays';
+let gCurrentCategory = 'SmartDisplays';
 const pieHeight = 500;
 const pieWidth = 500;
 const pieRadius = 250;
@@ -49,10 +49,11 @@ async function init() {
 	d3.selectAll(".categoryButton").attr("disabled", true);
 	gData = await fetchDataFromWeb();
 	d3.selectAll(".categoryButton").attr("disabled", false);
-	gCurrentCategory = 'Smart Displays';
+	gCurrentCategory = 'SmartDisplays';
+
 	gPieArea
 		.selectAll("path")
-		.data(gPie(getRevenueDataByDecade()))
+		.data(gPie(getCostDataByCategory()))
 		.enter()
 		.append("path")
 		.attr("class", "piePath")
@@ -72,7 +73,7 @@ async function init() {
 		.attr("class", "legend")
 		.attr("transform", (d, i) => {
 			var height = legendDotRadius * 2 + 4;
-			var offset = (height * GENRES_CONST.length) / 4;
+			var offset = (height * CATEGORY_CONST.length) / 4;
 			var horz = -2 * legendDotRadius * 3;
 			var vert = (i % 6) * height - offset;
 			return "translate(" + ((i / 6 < 1 ? horz : -1 * horz) - 40) + "," + vert + ")";
@@ -92,8 +93,7 @@ async function init() {
 		.attr("y", legendDotRadius - 2) // NEW
 		.text((d) => d);
 
-	drawAllLines();
-	changeCategory(1950);
+	changeCategory('SmartDisplays');
 }
 
 function updatePie() {
@@ -164,10 +164,14 @@ function handlePiePieceHover(_d, i) {
 }
 
 function getCostDataByCategory() {
-	const categoryData = gData.filter((d) => d.category === gCurrentCategory && !!d.category);
+	console.log(gData);
+	const categoryData = gData.filter((d) => d.category[0] === gCurrentCategory && !!d.category);
 	const result = CATEGORY_CONST.map((g) => ({ name: g, cost: 0 }));
+	console.log(categoryData);
 	categoryData.forEach((d) => {
 		const limitedCategories = d.category.filter((g) => CATEGORY_CONST.includes(g));
+		console.log("Potato");
+		console.log(limitedCategories);
 		limitedCategories.forEach((g) => {
 			const index = CATEGORY_CONST.indexOf(g);
 			result[index]["cost"] = result[index]["cost"] + d.cost;
