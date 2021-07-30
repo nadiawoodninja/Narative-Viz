@@ -1,4 +1,4 @@
-let gCurrentDecade = 1950;
+let gCurrentCategory = 'Smart Displays';
 const pieHeight = 500;
 const pieWidth = 500;
 const pieRadius = 250;
@@ -25,7 +25,7 @@ const gOuterArc = d3
 
 const gPie = d3
 	.pie()
-	.value((d) => d.revenue)
+	.value((d) => d.cost)
 	.sort(null);
 
 function gColors(i) {
@@ -46,10 +46,10 @@ function gColors(i) {
 }
 
 async function init() {
-	d3.selectAll(".decadeButton").attr("disabled", true);
+	d3.selectAll(".categoryButton").attr("disabled", true);
 	gData = await fetchDataFromWeb();
-	d3.selectAll(".decadeButton").attr("disabled", false);
-	gCurrentDecade = 1950;
+	d3.selectAll(".categoryButton").attr("disabled", false);
+	gCurrentCategory = 'Smart Displays';
 	gPieArea
 		.selectAll("path")
 		.data(gPie(getRevenueDataByDecade()))
@@ -66,7 +66,7 @@ async function init() {
 		.on("mouseout", () => handlePiePieceLeave(false));
 	const legendArea = gPieArea
 		.selectAll(".legend")
-		.data(GENRES_CONST)
+		.data(CATEGORY_CONST)
 		.enter()
 		.append("g")
 		.attr("class", "legend")
@@ -93,13 +93,13 @@ async function init() {
 		.text((d) => d);
 
 	drawAllLines();
-	changeDecade(1950);
+	changeCategory(1950);
 }
 
 function updatePie() {
 	d3.select("#donutChart")
 		.selectAll("path")
-		.data(gPie(getRevenueDataByDecade()))
+		.data(gPie(getCostDataByCategory()))
 		.transition()
 		.duration(500)
 		.attrTween("d", arcTween)
@@ -116,70 +116,64 @@ function arcTween(a) {
 
 function handlePiePieceLeave(toAnother) {
 	if (gCurrentHighlightGenre) {
-		d3.select(`[id='${gCurrentHighlightGenre}_legend']`).attr("opacity", "0.8");
-		d3.select(`[id='${gCurrentHighlightGenre}_path']`).attr("opacity", "0.8");
+		d3.select(`[id='${gCurrentHighlightCategory}_legend']`).attr("opacity", "0.8");
+		d3.select(`[id='${gCurrentHighlightCategory}_path']`).attr("opacity", "0.8");
 	}
 	d3.select("#posterCard").html("");
 	if (toAnother) {
 		d3.select("#donutInfoGeneral").html("");
-		d3.select("#donutInfoMovie").html("");
+		d3.select("#donutInfoProduct").html("");
 	} else {
 		d3.select("#donutInfoGeneral").html("Please hover over a section to see more details.");
-		d3.select("#donutInfoMovie").html("Please hover over a section to see more details.");
+		d3.select("#donutInfoProduct").html("Please hover over a section to see more details.");
 	}
 }
 
 function handlePiePieceHover(_d, i) {
 	handlePiePieceLeave(true);
-	gCurrentHighlightGenre = GENRES_CONST[i];
-	const revData = getRevenueDataByDecade()[i];
-	d3.select(`[id='${gCurrentHighlightGenre}_legend']`).attr("opacity", "1");
-	d3.select(`[id='${gCurrentHighlightGenre}_path']`).attr("opacity", "1");
+	gCurrentHighlightCategory = CATEGORY_CONST[i];
+	const costData = getCostDataByCategory()[i];
+	d3.select(`[id='${gCurrentHighlightCategory}_legend']`).attr("opacity", "1");
+	d3.select(`[id='${gCurrentHighlightCategory}_path']`).attr("opacity", "1");
 	d3.select("#donutInfoGeneral")
 		.append("ul")
 		.style("list-style-type", "none")
 		.selectAll("li")
-		.data([{ name: "name", displayName: "Genre" }, { name: "count", displayName: "Total number of movies" }, { name: "revenueString", displayName: "Total revenue" }])
+		.data([{ name: "name", displayName: "Category" }, { name: "cost", displayName: "Cost" }])
 		.enter()
 		.append("li")
 		.html((d) => {
-			return d.displayName + ": " + revData[d.name];
+			return d.displayName + ": " + costData[d.name];
 		});
 
-	const topMovie = revData["topMovie"];
+	const mostExpensiveProduct = costData["mostExpensiveProduct"];
 	const ulEl = d3
-		.select("#donutInfoMovie")
+		.select("#donutInfoProduct")
 		.append("ul")
 		.style("list-style-type", "none");
-	ulEl.append("li").html(`${topMovie.title}(${topMovie.year})`);
-	ulEl.append("li").html(`Revenue: ${formatMoney(topMovie.revenue)}`);
+	ulEl.append("li").html(`${mostExpensiveProduct.title}(${mostExpensiveProduct.release})`);
+	ulEl.append("li").html(`Cost: ${formatMoney(mostExpensiveProduct.cost)}`);
 	ulEl.append("li")
-		.html("Official genres:")
+		.html("Official Category:")
 		.append("ul")
 		.selectAll("li")
-		.data(topMovie.genres)
+		.data(mostExpensiveProduct.category)
 		.enter()
 		.append("li")
 		.html((d) => d);
-	d3.select("#posterCard")
-		.append("img")
-		.attr("src", "https://image.tmdb.org/t/p/w500" + topMovie.link)
-		.style("max-height", "280px");
 }
 
-function getRevenueDataByDecade() {
-	const decadeData = gData.filter((d) => d.decade === gCurrentDecade && !!d.genres);
-	const result = GENRES_CONST.map((g) => ({ name: g, revenue: 0, revenueString: "0", count: 0, topRevenue: 0, topMovie: undefined }));
-	decadeData.forEach((d) => {
-		const limitedGenres = d.genres.filter((g) => GENRES_CONST.includes(g));
-		limitedGenres.forEach((g) => {
-			const index = GENRES_CONST.indexOf(g);
-			result[index]["revenue"] = result[index]["revenue"] + d.revenue;
-			result[index]["revenueString"] = formatMoney(result[index]["revenue"]);
-			result[index]["count"] = result[index]["count"] + 1;
-			if (d.revenue > result[index]["topRevenue"]) {
-				result[index]["topRevenue"] = d.revenue;
-				result[index]["topMovie"] = d;
+function getCostDataByCategory() {
+	const categoryData = gData.filter((d) => d.category === gCurrentCategory && !!d.category);
+	const result = CATEGORY_CONST.map((g) => ({ name: g, cost: 0 }));
+	categoryData.forEach((d) => {
+		const limitedCategories = d.category.filter((g) => CATEGORY_CONST.includes(g));
+		limitedCategories.forEach((g) => {
+			const index = CATEGORY_CONST.indexOf(g);
+			result[index]["cost"] = result[index]["cost"] + d.cost;
+			if (d.cost > result[index]["mostExpensive"]) {
+				result[index]["mostExpensive"] = d.cost;
+				result[index]["mostExpensiveProduct"] = d;
 			}
 		});
 	});

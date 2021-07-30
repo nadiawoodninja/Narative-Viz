@@ -6,7 +6,7 @@ const lineGraphHeight = totalHeight - margin.top - margin.bottom;
 
 const xAxis = d3
 	.scaleTime()
-	.domain([new Date(1950, 0), new Date(2018, 0)])
+	.domain([new Date('1950', 0), new Date(2018, 0)])
 	.range([0, lineGraphWidth]);
 
 let yAxis;

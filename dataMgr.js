@@ -2,67 +2,51 @@ let gData;
 
 async function fetchDataFromWeb() {
 	const isLocal = true;
-	const url = (isLocal ? "https://goodbye-moonmen.github.io/narative_viz/" : "") + "movieSimple.tsv";
-	const data = await d3.tsv(url, transformData);
+	const url = (isLocal ? "https://nadiawoodninja.github.io/Narative-Viz/" : "") + "homeautomationProducts.csv";
+	const data = await d3.csv(url, transformData);
 	return data;
 }
 
 // Data keys:
-// Decade
-// Year of Release Date
+// Vote Year
+// Release
 // Title
-// Genres
-// Poster Path
-// Number of Records
-// Revenue
+// Category
+//PC Mag Ratings
 function transformData(entry) {
-	const processedGenres = processGenres(entry["Genres"]);
-	if (!processGenres) {
-		console.warn("Invalid entry:" + entry["Genres"]);
+	const processedCategory = processedCategory(entry["Category"]);
+	if (!processedCategory) {
+		console.warn("Invalid entry:" + entry["Category"]);
 		return null;
 	} else {
 		return {
 			title: entry["Title"],
-			decade: Number(entry["Decade"]),
-			year: Number(entry["Year of Release Date"]),
-			genres: processedGenres,
-			link: entry["Poster Path"],
-			revenue: Number(entry["Revenue"].replace(/,/g, "")) / 1000000,
+			year: Number(entry["Best Device for Year"]),
+			release: Number(entry["Release"]),
+			cost: Number(entry["Cost"].replace(/,/g, "")) / 1000000,
+			category: processedCategory,
 		};
 	}
 }
 
-const GENRES_CONST = [
-	"Action",
-	"Adventure",
-	// "Animation",
-	"Comedy",
-	"Crime",
-	// "Documentary",
-	"Drama",
-	"Family",
-	"Fantasy",
-	// "Foreign".
-	// "History",
-	"Horror",
-	// "Music",
-	"Mystery",
-	"Romance",
-	"Science Fiction",
-	// "TV Movies",
-	"Thriller",
-	// "War",
-	// "Western",
+const CATEGORY_CONST = [
+	"Smart Displays",
+	"Smart Speakers",
+	"Smart Plugs",
+	"Home Security Cameras",
+	"Smart Locks and Home Security Systems",
+	"Smart Heating and Cooling",
+	"Smart Lighting",
 ];
 
-function processGenres(rawGenres) {
+function processedCategory(rawCategories) {
 	try {
-		const entryGenres = JSON.parse(rawGenres.replace(/\'/g, '"'));
-		const genresArray = entryGenres.map((genreObj) => genreObj.name);
-		if (genresArray.includes("TV Movies")) {
+		const entryCategories = JSON.parse(rawCategories.replace(/\'/g, '"'));
+		const categorysArray = entryCategories.map((catObj) => catObj.name);
+		if (categorysArray.includes("")) {
 			return undefined;
 		}
-		return genresArray;
+		return categorysArray;
 	} catch (e) {
 		return undefined;
 	}
