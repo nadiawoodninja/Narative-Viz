@@ -13,14 +13,14 @@ body {
 	text-align: center;
 	background-color: #ffffff;
 	/* Add shadows to create the "card" effect */
-	box-shadow: 0 4px 8px 0 #797979;
+	/*box-shadow: 0 4px 8px 0 #797979;*/
 	transition: 0.3s;
 }
 
 /* On mouse-over, add a deeper shadow */
-.visualizationContainer:hover {
+/*.visualizationContainer:hover {
 	box-shadow: 0 8px 16px 0 #9c9c9c;
-}
+}*/
 
 .categoryButton {
 	border-radius: 4px;

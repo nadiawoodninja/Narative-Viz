@@ -23,7 +23,8 @@ function transformData(entry) {
 			title: entry["Title"],
 			year: Number(entry["Best Device for Year"]),
 			release: Number(entry["Release"]),
-			cost: Number(entry["Cost"].replace(/,/g, "")) / 1000000,
+			//cost: Number(entry["Cost"].replace(/,/g, "")) / 1000000,
+			cost: Number(entry["Cost"].replace(/,/g, "")) * 1,
 			category: processCategory,
 		};
 	}

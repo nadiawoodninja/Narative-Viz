@@ -5,8 +5,11 @@
 	</head>
 	<body onload="init()">
 		<h1 style="text-align: center">
-			Home Automation Products
+			Top Home Automation Products for Year 2021
 		</h1>
+		<h4 style="text-align: center">
+			Student Id: nadiaw2
+		</h4>
 		<div class="visualizationContainer">
 			<h2>
 				Select a category
@@ -23,35 +26,35 @@
 		</div>
 		<div class="visualizationContainer">
 			<h2>
-				Distribution of smart home products by cost for each category
+				Distribution by cost for each category
 			</h2>
 			<div id="donut" style="display:flex">
-				<div class="visualizationContainer" style="text-align: left;width:320px;height:400px;">
-					<h4>
-						Category details
-					</h4>
+				<div class="visualizationContainer" style="text-align: left;width:800px;height:400px;">
+					<h3>
+						PRODUCTS
+					</h3>
+					<div style="display:flex;">
+						<span style="flex-grow: 1">
+							<p id="donutInfoProduct">
+
+							</p></span>
+					</div>
+				</div>
+				<div class="visualizationContainer" style="text-align: left;width:500px;height:400px;">
+					<h3>
+						PRODUCT DETAILS
+					</h3>
 					<p id="donutInfoGeneral">
 						Please hover over a section to see more details.
 					</p>
 				</div>
 				<span id="donutChart"></span>
-				<div class="visualizationContainer" style="text-align: left;width:600px;height:400px;">
-					<h4>
-						Most expensive product
-					</h4>
-					<div style="display:flex;">
-						<span style="flex-grow: 1">
-							<p id="donutInfoProduct">
-								Please hover over a section to see more details.
-							</p></span
-						>
-					</div>
-				</div>
+
 			</div>
 		</div>
 		<script src="https://d3js.org/d3.v5.min.js"></script>
 		<script src="dataMgr.js"></script>
-		<script src="decadeMgr.js"></script>
+		<script src="categoryMgr.js"></script>
 		<script src="interactivePie.js"></script>
 	</body>
 </html>

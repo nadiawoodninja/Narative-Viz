@@ -49,7 +49,7 @@ async function init() {
 	d3.selectAll(".categoryButton").attr("disabled", true);
 	gData = await fetchDataFromWeb();
 	d3.selectAll(".categoryButton").attr("disabled", false);
-	gCurrentCategory = 'SmartDisplays';
+	//gCurrentCategory = 'SmartDisplays';
 
 	gPieArea
 		.selectAll("path")
@@ -65,9 +65,10 @@ async function init() {
 		.attr("stroke-width", "2px")
 		.on("mouseover", handlePiePieceHover)
 		.on("mouseout", () => handlePiePieceLeave(false));
+
 	const legendArea = gPieArea
 		.selectAll(".legend")
-		.data(CATEGORY_CONST)
+		.data(getCostDataByCategory().map((d)=>(d.name)))
 		.enter()
 		.append("g")
 		.attr("class", "legend")
@@ -78,6 +79,7 @@ async function init() {
 			var vert = (i % 6) * height - offset;
 			return "translate(" + ((i / 6 < 1 ? horz : -1 * horz) - 40) + "," + vert + ")";
 		});
+		/*
 	legendArea
 		.append("circle")
 		.attr("id", (d) => `${d}_legend`)
@@ -89,21 +91,69 @@ async function init() {
 		.on("mouseout", () => handlePiePieceLeave(false));
 	legendArea
 		.append("text") // NEW
-		.attr("x", legendDotRadius + 2) // NEW
-		.attr("y", legendDotRadius - 2) // NEW
-		.text((d) => d);
+		.attr("x", legendDotRadius + 2)
+		.attr("y", legendDotRadius - 2)
+		.text((d) => d);*/
 
 	changeCategory('SmartDisplays');
 }
 
 function updatePie() {
-	d3.select("#donutChart")
+	gPieArea
 		.selectAll("path")
 		.data(gPie(getCostDataByCategory()))
+		.join(
+			function(enter) {
+				return enter
+					.append("path")
+					.attr("class", "piePath")
+					.attr("id", (d) => `${d.data.name}_path`)
+					.attr("fill", (_d, i) => gColors(i))
+					.attr("opacity", "0.8")
+					.attr("d", gArc)
+					.each((d) => (this._current = d))
+					.attr("stroke-width", "2px")
+					.on("mouseover", handlePiePieceHover)
+					.on("mouseout", () => handlePiePieceLeave(false));
+			},
+			function(update) {
+				return update
+					.attr("id", (d) => `${d.data.name}_path`)
+					.attr("fill", (_d, i) => gColors(i))
+					.attr("opacity", "0.8")
+					.attr("d", gArc)
+					.each((d) => (this._current = d))
+			},
+			function(exit) {
+				return exit.remove();
+			}
+		)
 		.transition()
 		.duration(500)
 		.attrTween("d", arcTween)
 		.attr("id", (d) => `${d.data.name}_path`);
+
+			/* added this for legend*/
+			d3.select("#donutInfoProduct").html("");
+			const ulEl = d3
+				.select("#donutInfoProduct")
+				.selectAll("div")
+				.data(getCostDataByCategory())
+				.enter()
+				.append("div")
+				.append("ul")
+				.append("li").html((d)=>(d.name));
+				// .append("ul")
+				// .style("list-style-type", "none");
+				// ulEl.append("li").html("fgdfgdgdfg");
+				// ulEl.append("li").html("dasdas");
+				// ulEl.append("li")
+				// .html("Official Category:")
+				// .append("ul")
+				// .selectAll("li")
+				// .enter()
+				// .append("li")
+				// .html((d) => d);
 }
 
 function arcTween(a) {
@@ -115,37 +165,54 @@ function arcTween(a) {
 }
 
 function handlePiePieceLeave(toAnother) {
-	if (gCurrentHighlightGenre) {
-		d3.select(`[id='${gCurrentHighlightCategory}_legend']`).attr("opacity", "0.8");
-		d3.select(`[id='${gCurrentHighlightCategory}_path']`).attr("opacity", "0.8");
+	if (gCurrentCategory) {
+		d3.select(`[id='${gCurrentCategory}_legend']`).attr("opacity", "0.8");
+		d3.select(`[id='${gCurrentCategory}_path']`).attr("opacity", "0.8");
 	}
 	d3.select("#posterCard").html("");
 	if (toAnother) {
 		d3.select("#donutInfoGeneral").html("");
-		d3.select("#donutInfoProduct").html("");
+		/*d3.select("#donutInfoProduct").html("");*/
 	} else {
 		d3.select("#donutInfoGeneral").html("Please hover over a section to see more details.");
-		d3.select("#donutInfoProduct").html("Please hover over a section to see more details.");
+		/*d3.select("#donutInfoProduct").html("Please select category to see more details.");*/
 	}
 }
 
 function handlePiePieceHover(_d, i) {
 	handlePiePieceLeave(true);
-	gCurrentHighlightCategory = CATEGORY_CONST[i];
 	const costData = getCostDataByCategory()[i];
-	d3.select(`[id='${gCurrentHighlightCategory}_legend']`).attr("opacity", "1");
-	d3.select(`[id='${gCurrentHighlightCategory}_path']`).attr("opacity", "1");
+	//gCurrentHighlightItem = costData;
+
+	d3.select(`[id='${gCurrentCategory}_legend']`).attr("opacity", "1");
+	d3.select(`[id='${gCurrentCategory}_path']`).attr("opacity", "1");
 	d3.select("#donutInfoGeneral")
-		.append("ul")
-		.style("list-style-type", "none")
-		.selectAll("li")
-		.data([{ name: "name", displayName: "Category" }, { name: "cost", displayName: "Cost" }])
+		.selectAll("div")
+		.data([{ name: "name", displayName: "Product" }, { name: "cost", displayName: "Cost" }])
 		.enter()
-		.append("li")
+		.append("div")
 		.html((d) => {
-			return d.displayName + ": " + costData[d.name];
+			var v = costData[d.name];
+			if (d.name == "cost") v = formatMoney(v);
+			return "<b>" + d.displayName + ":</b> " + v;
 		});
 
+		// d3.select("#donutInfoGeneral")
+		// 	.append("ul")
+		// 	.style("list-style-type", "none")
+		// 	.selectAll("li")
+		// 	.data([{ name: "name", displayName: "Category" }, { name: "cost", displayName: "Cost" }])
+		// 	.enter()
+		// 	.append("li")
+		// 	.html((d) => {
+		// 		if(d.name == "cost") {
+		// 			return d.displayName + ": " + formatMoney(costData["cost"]);
+		// 		}
+		// 		return d.displayName + ": " + costData[d.name];
+		// 	});
+		//
+
+/*
 	const mostExpensiveProduct = costData["mostExpensiveProduct"];
 	const ulEl = d3
 		.select("#donutInfoProduct")
@@ -161,32 +228,16 @@ function handlePiePieceHover(_d, i) {
 		.enter()
 		.append("li")
 		.html((d) => d);
+		*/
 }
 
 function getCostDataByCategory() {
-	console.log(gData);
 	const categoryData = gData.filter((d) => d.category[0] === gCurrentCategory && !!d.category);
-	const result = CATEGORY_CONST.map((g) => ({ name: g, cost: 0 }));
-	console.log(categoryData);
-	categoryData.forEach((d) => {
-		const limitedCategories = d.category.filter((g) => CATEGORY_CONST.includes(g));
-		console.log("Potato");
-		console.log(limitedCategories);
-		limitedCategories.forEach((g) => {
-			const index = CATEGORY_CONST.indexOf(g);
-			result[index]["cost"] = result[index]["cost"] + d.cost;
-			if (d.cost > result[index]["mostExpensive"]) {
-				result[index]["mostExpensive"] = d.cost;
-				result[index]["mostExpensiveProduct"] = d;
-			}
-		});
-	});
+	const result = categoryData.map((d) => ({ name: d.title, cost: d.cost }) );
 	return result;
 }
 
 function formatMoney(value) {
-	if (value > 1000) {
-		return `$${(value / 1000).toFixed(2)}B`;
-	}
-	return `$${value.toFixed(2)}M`;
+	console.log(value);
+	return `${value.toFixed(2)}`;
 }
