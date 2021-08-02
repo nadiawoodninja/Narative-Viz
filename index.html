@@ -1,60 +1,355 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>Exploration of Outdoor Air Quality in Minnesota</title>
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body onload="init()">
 		<h1 style="text-align: center">
-			Top Home Automation Products for Year 2021
+			Exploration of Outdoor Air Quality in Minnesota
 		</h1>
 		<h4 style="text-align: center">
 			Student Id: nadiaw2
 		</h4>
-		<div class="visualizationContainer">
-			<h2>
-				Select a category
-			</h2>
-			<div id="donutSelectorContainer" style="display: flex; width:100%;">
-				<a id="categorySmartDisplays" class="categoryButton ripple" onclick="changeCategory('SmartDisplays')">Smart Displays</a>
-				<a id="categorySmartSpeakers" class="categoryButton ripple" onclick="changeCategory('SmartSpeakers')">Smart Speaker</a>
-				<a id="categorySmartPlugs" class="categoryButton ripple" onclick="changeCategory('SmartPlugs')">Smart Plugs</a>
-				<a id="categoryHomeSecurityCameras" class="categoryButton ripple" onclick="changeCategory('HomeSecurityCameras')">Home Security Cameras</a>
-				<a id="categorySmartLocksandHomeSecuritySystems" class="categoryButton ripple" onclick="changeCategory('SmartLocksandHomeSecuritySystems')">Smart Locks and Home Security Systems</a>
-				<a id="categorySmartHeatingandCooling" class="categoryButton ripple" onclick="changeCategory('SmartHeatingandCooling')">Smart Heating and Cooling</a>
-				<a id="categorySmartLighting" class="categoryButton ripple" onclick="changeCategory('SmartLighting')">Smart Lighting</a>
-			</div>
-		</div>
-		<div class="visualizationContainer">
-			<h2>
-				Distribution by cost for each category
-			</h2>
-			<div id="donut" style="display:flex">
-				<div class="visualizationContainer" style="text-align: left;width:800px;height:400px;">
-					<h3>
-						PRODUCTS
-					</h3>
-					<div style="display:flex;">
-						<span style="flex-grow: 1">
-							<p id="donutInfoProduct">
 
-							</p></span>
+		<div id="scene1" class="scene">
+			<div style="background: #eee; padding: 1em;">
+				<h2>The series of slides let's you explore Minnesota Air Quality Index. The exploration demonstrats the impact of various events (COVID shutdowns, July 4th Fireworks, Wildfires) on the outdoor air quality in Minnesota as measured by
+				the air quality index.</h2>
+			</div>
+			<div class="scene-btns">
+				<a href="#" class="button"  onclick="showScene(2)">Start Exploring</a>
+			</div>
+			<div>
+				<h4>What is the U.S. Air Quality Index (AQI)? </h4>
+				<p>The U.S. AQI is EPA’s index for reporting air quality.</p>
+				
+				<h4>How does the AQI work?</h4>
+				<p>Think of the AQI as a yardstick that runs from 0 to 500. The higher the AQI value, the greater the level of air pollution and the greater the health concern. For example, an AQI value of 50 or below represents good air quality, while an AQI value over 300 represents hazardous air quality.
+				
+				For each pollutant an AQI value of 100 generally corresponds to an ambient air concentration that equals the level of the short-term national ambient air quality standard for protection of public health. AQI values at or below 100 are generally thought of as satisfactory. When AQI values are above 100, air quality is unhealthy: at first for certain sensitive groups of people, then for everyone as AQI values get higher.
+				
+				The AQI is divided into six categories. Each category corresponds to a different level of health concern. Each category also has a specific color. The color makes it easy for people to quickly determine whether air quality is reaching unhealthy levels in their communities.</p>
+				
+				<img src="airquality.png" style="height:400px;">
+				<br>
+				<h4>Five major pollutants</h4><br>
+				EPA establishes an AQI for five major air pollutants regulated by the Clean Air Act. Each of these pollutants has a national air quality standard set by EPA to protect public health:
+				<ul>
+					<li>ground-level ozone</li>
+					<li>
+						particle pollution (also known as particulate matter, including PM2.5 and PM10)
+					</li>
+					<li>
+						carbon monoxide
+					</li>
+					<li>
+						sulfur dioxide
+					</li>
+					<li>
+						nitrogen dioxide
+					</li>
+					
+				</ul>
+
+			</div>
+
+
+		</div>
+		<div id="scene2" class="scene hidden">
+			<div class="scene-btns">
+				<a href="#" class="button" onclick="showScene(1)">Back</a>
+				<a href="#" class="button" onclick="showScene(3)">Next</a>
+			</div>
+			<div style="text-align: center; background-color: whitesmoke;">
+				<h2>ViewPoint: MN Air Quality durng COVID-19 Lockdowns</h2> <br>
+				<h4> It has been observed that during COVID-19 lockdowns there was an impact on air quality through out the world. It was noticed that the average AQI was lower, indicating good air quality</h4>
+			</div>
+			<div class="divTable" style="width: 50%;border: 1px solid #000; margin-left: auto; margin-right: auto;" >
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell">Levels of Concern</div>
+						<div class="divTableCell">Value of Index</div>
+					</div>
+					<div class="divTableRow" style="background-color: greenyellow;">
+						<div class="divTableCell">Good</div>
+						<div class="divTableCell">0 to 50</div>
+					</div>
+					<div class="divTableRow" style="background-color: yellow;">
+						<div class="divTableCell">Moderate</div>
+						<div class="divTableCell">51 to 100</div>
+					</div>
+					<div class="divTableRow" style="background-color: orange;">
+						<div class="divTableCell">Unhealthy for Sensitive Groups</div>
+						<div class="divTableCell">101 to 150</div>
+					</div>
+					<div class="divTableRow" style="background-color: red; color: white">
+						<div class="divTableCell">Unhealthy</div>
+						<div class="divTableCell">151 to 200</div>
+					</div>
+					<div class="divTableRow" style="background-color: purple; color: white">
+						<div class="divTableCell">Very Unhealthy</div>
+						<div class="divTableCell">201 to 300</div>
+					</div>
+					<div class="divTableRow" style="background-color:maroon; color: white;">
+						<div class="divTableCell">Hazardous</div>
+						<div class="divTableCell">301 and higher</div>
 					</div>
 				</div>
-				<div class="visualizationContainer" style="text-align: left;width:500px;height:400px;">
-					<h3>
-						PRODUCT DETAILS
-					</h3>
-					<p id="donutInfoGeneral">
-						Please hover over a section to see more details.
-					</p>
-				</div>
-				<span id="donutChart"></span>
-
 			</div>
+			<h4 style="text-align: center;">
+				Select from various different stations below reporting air quality index.
+			</h4>
+			<div class="site-select"><h4>Station</h4><select id="s2site" onchange="refreshData()"></select></div>
+
+			<div class="graph" style="background-color: #F8F9FA;">
+				<h3>2020 - COVID-19 Lockdowns</h3>
+				<div id="s2g2020"></div>
+			</div>
+
+			<!-- <div class="graph">
+				<h3>2019</h3>
+				<div id="s2g2019"></div>
+			</div>
+
+			<div class="graph">
+				<h3>2018</h3>
+				<div id="s2g2018"></div>
+			</div> -->
+
 		</div>
-		<script src="https://d3js.org/d3.v5.min.js"></script>
-		<script src="dataMgr.js"></script>
-		<script src="categoryMgr.js"></script>
-		<script src="interactivePie.js"></script>
+		<div id="scene3" class="scene hidden">
+			<div class="scene-btns">
+				<a href="#" class="button" onclick="showScene(2)">Back</a>
+				<a href="#" class="button" onclick="showScene(4)">Next</a>
+			</div>
+
+			<div style="text-align: center; background-color: whitesmoke;">
+				<h2>Viewpoint: MN Air Quality During July 4th Holiday</h2> <br>
+				<h4>July 4 Fireworks create unhealthy levels of air pollution. During the Fourth of July in the daytime, concentrations of PM2.5 can rise anywhere between 10 micrograms per cubic meter--well below the EPA 24-hour standard of 35. However, near sunset on July 4, the PM2.5 levels spiked up to 35, and continue to rise during the early morning hours to 59, an air quality level that is considered “Unhealthy”. According to the EPA, if sustained for 24 hours, this “red zone” air quality will cause increased aggravation of heart or lung disease and premature mortality in persons with cardiopulmonary disease, and the elderly, and will also cause increased respiratory effects in the general population.</h4>
+			</div>
+
+			<div class="divTable" style="width: 50%;border: 1px solid #000; margin-left: auto; margin-right: auto;" >
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell">Levels of Concern</div>
+						<div class="divTableCell">Value of Index</div>
+					</div>
+					<div class="divTableRow" style="background-color: greenyellow;">
+						<div class="divTableCell">Good</div>
+						<div class="divTableCell">0 to 50</div>
+					</div>
+					<div class="divTableRow" style="background-color: yellow;">
+						<div class="divTableCell">Moderate</div>
+						<div class="divTableCell">51 to 100</div>
+					</div>
+					<div class="divTableRow" style="background-color: orange;">
+						<div class="divTableCell">Unhealthy for Sensitive Groups</div>
+						<div class="divTableCell">101 to 150</div>
+					</div>
+					<div class="divTableRow" style="background-color: red; color: white">
+						<div class="divTableCell">Unhealthy</div>
+						<div class="divTableCell">151 to 200</div>
+					</div>
+					<div class="divTableRow" style="background-color: purple; color: white">
+						<div class="divTableCell">Very Unhealthy</div>
+						<div class="divTableCell">201 to 300</div>
+					</div>
+					<div class="divTableRow" style="background-color:maroon; color: white;">
+						<div class="divTableCell">Hazardous</div>
+						<div class="divTableCell">301 and higher</div>
+					</div>
+				</div>
+			</div>
+
+			<h4 style="text-align: center;">
+				Select from various different stations below reporting air quality index.
+			</h4>
+			<div class="site-select"><h4>Station</h4><select id="s3site" onchange="refreshData()"></select></div>
+
+			<div  class="graph" style="background-color: #F8F9FA;">
+				<h3>4th of July 2021 (Sunday)</h3>
+				<div id="s3g2021"></div>
+			</div>
+
+			<div  class="graph" style="background-color: #F8F9FA;">
+				<h3>4th of July 2020 (Saturday)</h3>
+				<h4>Even though the year 2020 was the year of lockdowns and stay at home order, an interesting observation here is that the AQI around July 4th was worse in 2020 compared to 2021. </h4>
+				<div id="s3g2020"></div>
+			</div>
+
+			<!-- <div  class="graph" style="background-color: #F8F9FA;">
+				<h3>4th of July 2019</h3>
+				<div id="s3g2019"></div>
+			</div>
+
+			<div  class="graph" style="background-color: #F8F9FA;">
+				<h3>4th of July 2018</h3>
+				<div id="s3g2018"></div>
+			</div> -->
+
+		</div>
+		<div id="scene4" class="scene hidden">
+			<div class="scene-btns">
+				<a href="#" class="button" onclick="showScene(3)">Back</a>
+				<a href="#" class="button" onclick="showScene(5)">Next</a>
+			</div>
+
+			<div style="text-align: center; background-color: whitesmoke;">
+				<h2>Viewpoint: MN Air Quality During Canadian Wildfires</h2> <br>
+				<h4>Observing data from Jun 2021 to end of July 2021. July 20th, 2021, Air quality alert was expanded across Minnesota over Canadian wildfire smoke. Heavy smoke from Canadian wildfires prompted the Minnesota Pollution Control Agency to expand an air quality alert originally for northern Minnesota to much of the state.</h4>
+			</div>
+			<div class="divTable" style="width: 50%;border: 1px solid #000; margin-left: auto; margin-right: auto;" >
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell">Levels of Concern</div>
+						<div class="divTableCell">Value of Index</div>
+					</div>
+					<div class="divTableRow" style="background-color: greenyellow;">
+						<div class="divTableCell">Good</div>
+						<div class="divTableCell">0 to 50</div>
+					</div>
+					<div class="divTableRow" style="background-color: yellow;">
+						<div class="divTableCell">Moderate</div>
+						<div class="divTableCell">51 to 100</div>
+					</div>
+					<div class="divTableRow" style="background-color: orange;">
+						<div class="divTableCell">Unhealthy for Sensitive Groups</div>
+						<div class="divTableCell">101 to 150</div>
+					</div>
+					<div class="divTableRow" style="background-color: red; color: white">
+						<div class="divTableCell">Unhealthy</div>
+						<div class="divTableCell">151 to 200</div>
+					</div>
+					<div class="divTableRow" style="background-color: purple; color: white">
+						<div class="divTableCell">Very Unhealthy</div>
+						<div class="divTableCell">201 to 300</div>
+					</div>
+					<div class="divTableRow" style="background-color:maroon; color: white;">
+						<div class="divTableCell">Hazardous</div>
+						<div class="divTableCell">301 and higher</div>
+					</div>
+				</div>
+			</div>
+			<h4 style="text-align: center;">
+				Select from various different stations below reporting air quality index.
+			</h4>
+			<div class="site-select"><h4>Station</h4><select id="s4site" onchange="refreshData()"></select></div>
+
+			<div class="graph" style="background-color: #F8F9FA;">
+				<h2>2021 - Canadian Wildfires</h2>
+				<h4>The worst air quality index was reported by Leech Lake Nation station reaching an unhealthy level of 251.</h4>
+				<div id="s4g2021"></div>
+			</div>
+
+			<!-- <div class="graph">
+				<h3>2020</h3>
+				<div id="s4g2020"></div>
+			</div>
+
+			<div class="graph">
+				<h3>2019</h3>
+				<div id="s4g2019"></div>
+			</div>
+
+			<div class="graph">
+				<h3>2018</h3>
+				<div id="s4g2018"></div>
+			</div> -->
+
+		</div>
+		<div id="scene5" class="scene hidden">
+			<h2>Explore by Year</h2>
+			<div style="text-align: center; background-color: whitesmoke; padding: auto;">
+				<h2>Viewpoint: MN Air Quality through out the years</h2> <br>
+				<h4>The data presented here allows one to observe the data freely. The data was downloaded from United States Evironmental Protection Agency.<br> </h4>
+			</div>
+			<div class="scene-btns">
+				<a href="#" class="button" onclick="showScene(4)">Back</a>
+				<a href="#" class="button" onclick="showScene(1)">Next</a>
+			</div>
+			<div class="divTable" style="width: 50%;border: 1px solid #000; margin-left: auto; margin-right: auto;" >
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCell">Levels of Concern</div>
+						<div class="divTableCell">Value of Index</div>
+					</div>
+					<div class="divTableRow" style="background-color: greenyellow;">
+						<div class="divTableCell">Good</div>
+						<div class="divTableCell">0 to 50</div>
+					</div>
+					<div class="divTableRow" style="background-color: yellow;">
+						<div class="divTableCell">Moderate</div>
+						<div class="divTableCell">51 to 100</div>
+					</div>
+					<div class="divTableRow" style="background-color: orange;">
+						<div class="divTableCell">Unhealthy for Sensitive Groups</div>
+						<div class="divTableCell">101 to 150</div>
+					</div>
+					<div class="divTableRow" style="background-color: red; color: white">
+						<div class="divTableCell">Unhealthy</div>
+						<div class="divTableCell">151 to 200</div>
+					</div>
+					<div class="divTableRow" style="background-color: purple; color: white">
+						<div class="divTableCell">Very Unhealthy</div>
+						<div class="divTableCell">201 to 300</div>
+					</div>
+					<div class="divTableRow" style="background-color:maroon; color: white;">
+						<div class="divTableCell">Hazardous</div>
+						<div class="divTableCell">301 and higher</div>
+					</div>
+				</div>
+			</div>
+			<h4 style="text-align: center;">
+				Select from various different stations below reporting air quality index.
+			</h4>
+
+			<div class="site-select"><h4>Station</h4><select id="s5site" onchange="refreshData()"></select></div>
+
+			<div class="graph" style="background-color: #F8F9FA;">
+				<h2>Year 2021</h2>
+				<h4>Highest AQI creating hazardous conditions was 165, reported by Ben Franklin School station on May 31, 2021. </h4>
+				<div id="s5g2021"></div>
+			</div>
+
+			<div class="graph" style="background-color: #F8F9FA;">
+				<h2>Year 2020</h2>
+				<h4>Highest AQI was 152, reported by Andersen School. UNHEALTHY level of concern.</h4>
+				<div id="s5g2020"></div>
+			</div>
+
+			<div class="graph" style="background-color: #F8F9FA;">
+				<h2>Year 2019</h2>
+				<h4>Highest and worst AQI was 94, reported by Andersen School. MODERATE level of concern.</h4>
+				<div id="s5g2019"></div>
+			</div>
+
+
+
+		</div>
+
+		<!-- <div style="text-align: center;">
+			<select id="dataSiteName" onchange="dataSiteChanged()"></select>
+		</div>
+
+		<div id="vizLine"></div> -->
+
+		<!-- 
+			Tentative narative:
+			- Effects of human and natural events on outdoor air quality in MN
+			- Apple Valley? Anoka Count Airport only? Near Road I-35/I-94? Or average everything?
+
+			Tasks:
+			- Load data
+			- March 15 2020 - start of COVID-19 lockdowns
+			- March 23 2020 - stay at home order
+			- July 22 2020 - mask mandate
+			- Dec 14 2020 - first vaccines arrive
+		-->
+
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+		<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+		<script src="mn_aqi_data.js"></script>
+		<script src="explore.js"></script>
 	</body>
 </html>
